@@ -1,0 +1,47 @@
+import java.util.ArrayList;
+public class Grocery extends Product {
+    private ArrayList<Product> groceryItems, userList;
+
+    public Grocery() {
+        super("Grocery", 0.0, 0.0);
+        //USER LIST
+        userList = new ArrayList<>();
+        //Grocery LIST
+        groceryItems = new ArrayList<>();
+        groceryItems.add(new Product("Milk", 2.99, 0.0));
+        groceryItems.add(new Product("Bread", 4.85, 0.0));
+        groceryItems.add(new Product("Eggs", 6.00, 0.0));
+        groceryItems.add(new Product("Bacon", 8.00, 0.0));
+        groceryItems.add(new Product("Rice", 5.35, 0.0));
+    }
+
+    //ADDS TO USER GROCERYLIST
+    public void addItem(String item) {
+        for (Product p : groceryItems) {
+            if (p.getProduct().equals(item)) {
+                userList.add(p);
+                System.out.println(item + " has been added");
+                return;
+            }
+        }
+    }
+
+    //PRINTS AVAILABLE ITMES
+    public void showAvailableItems() {
+        System.out.println("Available Grocery List:");
+        for (Product item : groceryItems) {
+            System.out.println("- " + item.getProduct());
+        }
+    }
+    //PRINTS USER LIST;
+    public void showUserList() {
+        System.out.println("User Grocery List:");
+        if (userList.isEmpty()) {
+            System.out.println("(empty)");
+        } else {
+            for (Product item : userList) {
+                System.out.println("- " + item.getProduct() + " ($" + item.getPrice() + ")");
+            }
+        }
+    }
+}
