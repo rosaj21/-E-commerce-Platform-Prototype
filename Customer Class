@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+
+public class Customer extends User {
+    private ArrayList<Product> cart;
+
+    //CONSTRUCTOR
+    public Customer(String name, String id) {
+        super(name, id);
+        cart = new ArrayList<>();
+    }
+
+    //ADD ITEMS TO CART
+    public void addItemToCart(Product item) {cart.add(item);}
+
+    //SHOWS CUSTOMERS CART
+    public ArrayList<Product> getCart() {return cart;}
+}
