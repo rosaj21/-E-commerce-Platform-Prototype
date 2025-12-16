@@ -1,2 +1,4 @@
 Product Class - Base for the Electronics, Clothing, Grocery Classes
 User Class - Base for the Customer and Admin Classes
+Order Class - Uses all classes to create a list where it links the Electronics, Clothing, and Grocery Classes
+
