@@ -1,0 +1,57 @@
+import java.util.ArrayList;
+public class Clothing extends Product {
+    private String size;
+    private ArrayList<Product> brandsList, userList;
+
+    public Clothing(String product, double price, double taxes, String size) {
+        super(product, price, taxes); // initialize Product fields
+        this.size = size;
+        userList = new ArrayList<>();
+        brandsList = new ArrayList<>(); // initialize empty list
+        brandsList.add(new Product("Puma", 50.0, 0.0));
+        brandsList.add(new Product("UnderArmor", 65.0, 0.0));
+        brandsList.add(new Product("Nike", 75.0, 0.0));
+        brandsList.add(new Product("Jordan", 80.0, 0.0));
+        brandsList.add(new Product("Gucci", 100.0, 0.0));
+    }
+
+    public void addBrand(String item) {
+        for (Product p : brandsList) {
+            if (p.getProduct().equals(item)) {
+                userList.add(p);
+                System.out.println(item + " has been added");
+                return;
+            }
+        }
+    }
+    public void removeBrand(String item) {
+        for (Product p : brandsList) {
+            if (p.getProduct().equals(item)) {
+                userList.remove(p);
+                System.out.println(item + " has been remove");
+                return;
+            }
+        }
+    }
+    // Show user's selected brands
+    public void showSelectedBrands() {
+        System.out.println("Selected Brands:");
+        if (userList.isEmpty()) {
+            System.out.println("(none)");
+        } else {
+            for (Product p : userList) {
+                System.out.println("- " + p.getProduct() + " ($" + p.getPrice() + ")");
+            }
+        }
+    }
+
+    public String getSize() {return size;}
+    public void setSize(String size) {this.size = size;}
+
+    public void showInfo() {
+        System.out.println("Clothing Item: " + getProduct());
+        System.out.println("Size:" + size);
+        System.out.println("Price: " + getPrice());
+        System.out.println("Taxes: " + getTaxes());
+    }
+}
