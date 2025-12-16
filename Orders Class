@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+
+public class Orders extends Product {
+    private Customer customer;              // who placed the order
+    private ArrayList<Product> orderItems;  // products in the order
+
+    public Orders(Customer customer) {
+        super("Order", 0.0, 0.0); // base Product fields not really used here
+        this.customer = customer;
+        this.orderItems = new ArrayList<>(customer.getCart());
+    }
+
+    // Add a product to the order
+    public void addProduct(Product product) {
+        orderItems.add(product);
+        System.out.println(product.getProduct() + " added to order.");
+    }
+
+    // Remove a product from the order
+    public void removeProduct(Product product) {
+        if (orderItems.remove(product)) {
+            System.out.println(product.getProduct() + " removed from order.");
+        } else {
+            System.out.println(product.getProduct() + " not found in order.");
+        }
+    }
+
+    // Show all products in the order
+    public void showOrderItems() {
+        System.out.println("Order for customer: " + customer.getName());
+        for (Product p : orderItems) {
+            System.out.println("- " + p.getProduct() + " ($" + p.getPrice() + ")");
+        }
+    }
+
+    // Calculate total price with tax
+    public double calculateTotal(double taxRate) {
+        double total = 0;
+        for (Product p : orderItems) {
+            total += p.productPriceAfterTax(taxRate);
+        }
+        return total;
+    }
+}
