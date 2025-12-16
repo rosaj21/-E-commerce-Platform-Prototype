@@ -1,0 +1,33 @@
+public class Product {
+    String product;
+    double price, taxes;
+
+    //CONSTRUCTOR
+    public Product() {
+        this.product = "NA";
+        this.price = -1.0;
+        this.taxes = -1.0;
+    }
+
+    public Product(String product, double price, double taxes) {
+        this.product = product;
+        this.price = price;
+        this.taxes = taxes;
+    }
+
+    //SETTERS AND GETTERS
+    public String getProduct() {return product;}
+    public void setProduct(String product) {this.product = product;}
+    public double getTaxes() {return taxes;}
+    public void setTaxes(double taxes) {this.taxes = taxes;}
+    public double getPrice() {return price;}
+    public void setPrice(double price) {this.price = price;}
+
+    //TAXES EQUATION
+    public double productPriceAfterTax(double taxRate) {
+        double taxAmount = price * (taxRate / 100);
+        double finalPrice = price + taxAmount;
+        System.out.println("Final Price after Taxes: " + finalPrice);
+        return finalPrice;
+    }
+}
