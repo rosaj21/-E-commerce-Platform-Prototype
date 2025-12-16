@@ -1,0 +1,45 @@
+import java.util.*;
+import java.util.function.*;
+
+public class ECommerce {
+    static void main() {
+        // Create some products
+        Electronics laptop = new Electronics("Laptop", 1200.0, 0.0, "Dell", 24);
+        Electronics phone = new Electronics("Smartphone", 800.0, 0.0, "Samsung", 12);
+        Product shirt = new Product("T-Shirt", 25.0, 0.0);
+        Product bread = new Product("Bread", 4.85, 0.0);
+
+        // Create a customer and add items to cart
+        Customer c1 = new Customer("Mark", "C001");
+        c1.addItemToCart(laptop);
+        c1.addItemToCart(phone);
+        c1.addItemToCart(shirt);
+        c1.addItemToCart(bread);
+
+        // Create an order
+        Orders order = new Orders(c1);
+        order.showOrderItems();
+
+        // --- SIMPLE LAMBDA EXAMPLES ---
+
+        // 1. Show only products over $100
+        System.out.println("\nProducts over $100:");
+        c1.getCart().stream()
+                .filter(p -> p.getPrice() > 100)   // keep only expensive items
+                .forEach(p -> System.out.println(p.getProduct()));
+
+        // 2. Calculate total price of cart
+        double total = c1.getCart().stream()
+                .mapToDouble(p -> p.getPrice())    // take each price
+                .sum();                            // add them up
+        System.out.println("\nCart total: $" + total);
+
+        // 3. Apply a 10% discount to every product
+        System.out.println("\nApplying 10% discount:");
+        c1.getCart().forEach(p -> {
+            double newPrice = p.getPrice() * 0.9;
+            p.setPrice(newPrice);
+            System.out.println(p.getProduct() + " now costs $" + newPrice);
+        });
+    }
+}
